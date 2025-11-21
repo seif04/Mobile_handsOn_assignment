@@ -1,10 +1,10 @@
 package com.example.handson_assignment
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.DatePicker
 import android.widget.EditText
-import android.widget.Toast
 import android.widget.Toast.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -31,7 +31,6 @@ class MainActivity : AppCompatActivity() {
         lateinit var dao: database.ExpenseDao
         val db = ExpenseDatabase.getInstance(applicationContext)
         dao = db.expenseDao()
-        var id = 0
 
         val edt_expense = findViewById<EditText>(R.id.id_editText_expense)
         val edt_amount = findViewById<EditText>(R.id.id_editText_amount)
@@ -51,11 +50,16 @@ class MainActivity : AppCompatActivity() {
                 .toEpochMilli()
 
             lifecycleScope.launch {
-                dao.addExpense(Expense(id++, expense, amount, date))
+                dao.addExpense(Expense(name = expense, amount = amount, date = date))
             }
+
 
             makeText(this, "Expense Added", LENGTH_SHORT).show()
         }
 
+        btn_showall.setOnClickListener {
+            val intent = Intent(this, AllExpenses::class.java)
+            startActivity(intent)
+        }
     }
 }

@@ -2,4 +2,5 @@
 plugins {
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.kotlin.android) apply false
+    kotlin("kapt") version "1.9.22" apply false // <-- Use your project's Kotlin version here
 }
