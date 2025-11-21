@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HandsOn_assignment">
         <activity
+            android:name=".FilterExpenses"
+            android:exported="false" />
+        <activity
             android:name=".AllExpenses"
             android:exported="false" />
         <activity

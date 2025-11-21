@@ -61,5 +61,16 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, AllExpenses::class.java)
             startActivity(intent)
         }
+
+        btn_filter.setOnClickListener {
+            val date = LocalDate.of(datepicker.year, datepicker.month + 1, datepicker.dayOfMonth)
+                .atStartOfDay(ZoneId.systemDefault()) // This sets time to 00:00:00
+                .toInstant()
+                .toEpochMilli()
+
+            val intent = Intent(this, FilterExpenses::class.java)
+            intent.putExtra("selectedDate", date)
+            startActivity(intent)
+        }
     }
 }
